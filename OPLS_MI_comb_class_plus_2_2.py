@@ -123,11 +123,7 @@ class LR_ARD(object):
             self.f1s.append(f1)
             self.aucs.append(auc)
             
-            #Guardamos estados intermedios por si peta el servidor
-            # direccion_estados = os.path.join(self.direction, 'estados')
-            # self.guardar_estados(direccion_est=direccion_estados)
-            ################
-#            self.L.append(self.update_bound())
+
             if prune and i>5:
                 self.pruning(pruning_crit)
             print('K: ', q.Kc, flush = True)
@@ -139,65 +135,8 @@ class LR_ARD(object):
             print('Feats: ', feats, flush = True)
             self.contador = i
 
-            # listado = [self.accs, self.bal_accs, self.precisions, self.recalls, self.f1s, self.aucs, q.Kc, feats]
 
-            # direccion_guardado = os.path.join(self.direction, 'results_'+str(self.fold)+'_'+str(self.seed)+'.npy')
-
-            # with open(direccion_guardado, 'wb') as archivo:
-            #     pickle.dump(listado, archivo)
-            ###################
-            # self.L.append(self.update_bound())
-            # print(self.L[-1])
-            ###################
-#            ##################
-#            ##################
-#            print('\rIteration %d Lower Bound %.1f K %4d' %(i+1, self.L[-1], q.K), end='\r', flush=True)
-#            if (len(self.L) > 100) and (abs(1 - np.mean(self.L[-101:-1])/self.L[-1]) < tol):
-#                print('\nModel correctly trained. Convergence achieved')
-#                return 
-#            print('LB: ',self.L[-1])               
-        print('')
-
-    def guardar_estados(self, direccion_est):
-        q = self.q_dist
-        dire = os.path.join(direccion_est, 'A_'+str(self.fold)+'_'+str(self.seed)+'.npy')
-        with open(dire, 'wb') as archivo:
-            pickle.dump(q.A, archivo)
-        dire = os.path.join(direccion_est, 'W_'+str(self.fold)+'_'+str(self.seed)+'.npy')
-        with open(dire, 'wb') as archivo:
-            pickle.dump(q.W, archivo)
-        dire = os.path.join(direccion_est, 'psi_'+str(self.fold)+'_'+str(self.seed)+'.npy')
-        with open(dire, 'wb') as archivo:
-            pickle.dump(q.psi, archivo)
-        dire = os.path.join(direccion_est, 'alpha_'+str(self.fold)+'_'+str(self.seed)+'.npy')
-        with open(dire, 'wb') as archivo:
-            pickle.dump(q.alpha, archivo)
-        dire = os.path.join(direccion_est, 'gamma_'+str(self.fold)+'_'+str(self.seed)+'.npy')
-        with open(dire, 'wb') as archivo:
-            pickle.dump(q.gamma, archivo)
-        dire = os.path.join(direccion_est, 'Wy_'+str(self.fold)+'_'+str(self.seed)+'.npy')
-        with open(dire, 'wb') as archivo:
-            pickle.dump(q.Wy, archivo)
-        dire = os.path.join(direccion_est, 'tau_'+str(self.fold)+'_'+str(self.seed)+'.npy')
-        with open(dire, 'wb') as archivo:
-            pickle.dump(q.tau, archivo)
-        dire = os.path.join(direccion_est, 'tauy_'+str(self.fold)+'_'+str(self.seed)+'.npy')
-        with open(dire, 'wb') as archivo:
-            pickle.dump(q.tauy, archivo)
-        dire = os.path.join(direccion_est, 'Z_'+str(self.fold)+'_'+str(self.seed)+'.npy')
-        with open(dire, 'wb') as archivo:
-            pickle.dump(q.Z, archivo)
-        dire = os.path.join(direccion_est, 'Y_'+str(self.fold)+'_'+str(self.seed)+'.npy')
-        with open(dire, 'wb') as archivo:
-            pickle.dump(q.Y, archivo) 
-        dire = os.path.join(direccion_est, 'xi_'+str(self.fold)+'_'+str(self.seed)+'.npy')
-        with open(dire, 'wb') as archivo:
-            pickle.dump(q.xi, archivo)   
-        dire = os.path.join(direccion_est, 'feats_'+str(self.fold)+'_'+str(self.seed)+'.npy')
-        with open(dire, 'wb') as archivo:
-            pickle.dump(self.index_feats, archivo)   
-        
-   
+  
     def pruning_feat(self, pruning_feat_crit):
         q = self.q_dist
         
