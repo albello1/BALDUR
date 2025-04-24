@@ -4,5 +4,5 @@ In this repository we provide the code of the **BA**yesian **L**atent **D**ata *
 
 This model was published in: FILL WHEN PUBLISHED.
 
-Also, we provide an explanatory notebook with a detailed example of how to use BALDUR.
+Also, we provide an explanatory notebook (toy_example.ipynb) with a detailed example of how to use BALDUR.
 
